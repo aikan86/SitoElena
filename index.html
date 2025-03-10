@@ -33,29 +33,45 @@
     }
     /* Navigazione */
     nav {
-    background: #f8f8f8;
-    color: #333;
-    padding: 5px 0; /* Padding ridotto per una barra più sottile */
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 100;
+      background: #f8f8f8; 
+      color: #333; 
+      padding: 10px 0;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 100;
     }
-    /* Nuovo contenitore per logo e titolo */
-    .logo-container {
+    nav .container {
       display: flex;
+      justify-content: space-between;
       align-items: center;
+      position: relative; 
     }
+    /* Logo resizable */
     .logo img {
-      max-height: 50px; /* Altezza del logo ridotta */
+      max-height: 65px; 
       width: auto;
+      max-width: 100%;
+      height: auto;
     }
-    /* Stile per il titolo accanto al logo */
-    .site-title {
-      margin-left: 10px;
-      font-size: 1.2em;
+    /* Menu di navigazione */
+    ul.menu {
+      list-style: none;
+      display: flex;
+      margin: 0;
+      padding: 0;
+    }
+    ul.menu li {
+      margin-left: 20px;
+    }
+    ul.menu li a {
+      color: #333; 
+      text-decoration: none;
       font-weight: bold;
-      color: #333;
+      transition: color 0.3s ease;
+    }
+    ul.menu li a:hover {
+      color: #ff9800;
     }
     /* Hamburger (nascosto su desktop) */
     .hamburger {
@@ -86,7 +102,7 @@
       border-radius: 10px;
       max-width: 700px;
       width: 90%;
-      text-align: center;
+      text-align: left;
     }
     #presentazione h1 {
       font-size: 3em;
@@ -340,17 +356,26 @@
 <body>
   <!-- Navigazione fissa con logo a sinistra -->
   <nav>
-    <div class="container">
-      <div class="logo">
-        <a href="javascript:scroll(0,0)"><img src="images/logo_Elena.png" alt="LogoEG"></a>
+    <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+      <!-- Logo e titolo -->
+      <div class="logo-container">
+        <div class="logo">
+          <a href="javascript:scroll(0,0)">
+            <img src="images/logo_Elena.png" alt="LogoEG">
+          </a>
+        </div>
+        <div class="site-title">
+          Dott.sa Elena Gianelli - Psicologa a Chiavari
+        </div>
       </div>
+      <!-- Menu di navigazione -->
       <ul class="menu">
         <li><a href="#presentazione">La mia storia</a></li>
-        <li><a href="#dove">Dove mi trovo</a></li>
         <li><a href="#Contatti">Contatti</a></li>
+        <li><a href="#dove">Dove mi trovo</a></li>
         <li><a href="#prenotazione">Richiedi appuntamento</a></li>
       </ul>
-      <!-- Hamburger visibile solo in mobile, posizionato a destra -->
+      <!-- Hamburger per mobile -->
       <div class="hamburger" onclick="toggleMenu()">
         <span></span>
         <span></span>
@@ -358,7 +383,6 @@
       </div>
     </div>
   </nav>
-  <div class="spacer"></div>
   
   <!-- Sezione Presentazione -->
   <section id="presentazione">
