@@ -33,45 +33,29 @@
     }
     /* Navigazione */
     nav {
-      background: #f8f8f8; 
-      color: #333; 
-      padding: 10px 0;
-      position: fixed;
-      width: 100%;
-      top: 0;
-      z-index: 100;
+    background: #f8f8f8;
+    color: #333;
+    padding: 5px 0; /* Padding ridotto per una barra più sottile */
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 100;
     }
-    nav .container {
+    /* Nuovo contenitore per logo e titolo */
+    .logo-container {
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      position: relative; 
     }
-    /* Logo resizable */
     .logo img {
-      max-height: 65px; 
+      max-height: 50px; /* Altezza del logo ridotta */
       width: auto;
-      max-width: 100%;
-      height: auto;
     }
-    /* Menu di navigazione */
-    ul.menu {
-      list-style: none;
-      display: flex;
-      margin: 0;
-      padding: 0;
-    }
-    ul.menu li {
-      margin-left: 20px;
-    }
-    ul.menu li a {
-      color: #333; 
-      text-decoration: none;
+    /* Stile per il titolo accanto al logo */
+    .site-title {
+      margin-left: 10px;
+      font-size: 1.2em;
       font-weight: bold;
-      transition: color 0.3s ease;
-    }
-    ul.menu li a:hover {
-      color: #ff9800;
+      color: #333;
     }
     /* Hamburger (nascosto su desktop) */
     .hamburger {
