@@ -482,13 +482,15 @@
           <input type="tel" id="telefono" name="telefono" placeholder="Il tuo numero di telefono">
         </div>
         <div class="form-group">
-          <label for="arrivo">Data di Arrivo</label>
+          <label for="arrivo">Giorno di richiesta</label>
           <input type="date" id="arrivo" name="arrivo" required>
         </div>
+        <!--
         <div class="form-group">
           <label for="partenza">Data di Partenza</label>
           <input type="date" id="partenza" name="partenza" required>
         </div>
+        -->
         <div class="form-group">
           <label for="messaggio">Messaggio</label>
           <textarea id="messaggio" name="messaggio" rows="5" placeholder="Scrivi il tuo messaggio..."></textarea>
@@ -501,7 +503,7 @@
   <!-- Footer -->
   <footer>
     <div class="container">
-      <p>&copy; 2025 i Portici - Casa Vacanze a Chiavari. Tutti i diritti riservati.</p>
+      <p>&copy; 2025 Dott.sa Elena Gianelli - Psicologa a Chiavari.</p>
     </div>
   </footer>
   
@@ -552,13 +554,13 @@
       var email = document.getElementById('email').value;
       var telefono = document.getElementById('telefono').value;
       var arrivo = document.getElementById('arrivo').value;
-      var partenza = document.getElementById('partenza').value;
+      //var partenza = document.getElementById('partenza').value;
       var messaggio = document.getElementById('messaggio').value;
       
       // Costruisci il messaggio (ricorda di codificare l'URL)
       var testo = encodeURIComponent(
         "Ciao, sono " + nome + " (email: " + email + ", telefono: " + telefono + "). " +
-        "Vorrei prenotare dal " + arrivo + " al " + partenza + ". " +
+        "Vorrei richiedere appuntamento il giorno " + arrivo + ". " +
         "Messaggio: " + messaggio
       );
       
