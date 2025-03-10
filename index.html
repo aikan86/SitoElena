@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>i Portici - Appartamento a Chiavari</title>
+  <style>
+    /* Reset e stili base */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+    }
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px 0;
+    }
+    /* Animazione fade-in per le sezioni */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    section {
+      padding: 80px 0;
+      animation: fadeIn 0.8s ease-out;
+    }
+    /* Navigazione */
+    nav {
+      background: #f8f8f8; 
+      color: #333; 
+      padding: 10px 0;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 100;
+    }
+    nav .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative; 
+    }
+    /* Logo resizable */
+    .logo img {
+      max-height: 65px; 
+      width: auto;
+      max-width: 100%;
+      height: auto;
+    }
+    /* Menu di navigazione */
+    ul.menu {
+      list-style: none;
+      display: flex;
+      margin: 0;
+      padding: 0;
+    }
+    ul.menu li {
+      margin-left: 20px;
+    }
+    ul.menu li a {
+      color: #333; 
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+    ul.menu li a:hover {
+      color: #ff9800;
+    }
+    /* Hamburger (nascosto su desktop) */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+    .hamburger span {
+      display: block;
+      width: 25px;
+      height: 3px;
+      margin: 5px;
+      background: #333;
+    }
+    /* Sezione Presentazione */
+    #presentazione {
+      background: url('images/chiavari_sfondo.jpeg') no-repeat center center/cover;
+      color: #fff;
+      text-align: center;
+      min-height: 600px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .presentation-box {
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 700px;
+      width: 90%;
+      text-align: center;
+    }
+    #presentazione h1 {
+      font-size: 3em;
+      margin-bottom: 20px;
+    }
+    #presentazione p {
+      font-size: 1.2em;
+      margin-bottom: 30px;
+    }
+    #presentazione a.btn {
+      background: #ff9800;
+      color: #fff;
+      padding: 10px 20px;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 1.1em;
+      transition: background 0.3s ease;
+    }
+    #presentazione a.btn:hover {
+      background: #e68900;
+    }
+    /* Sezione Gallery */
+    #gallery {
+      background: #f4f4f4;
+      text-align: center;
+    }
+    #gallery h2 {
+      margin-bottom: 40px;
+      font-size: 2em;
+    }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    .gallery-item {
+      background: #ddd;
+      padding: 10px;
+    }
+    .gallery-item img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+    .gallery-item img:hover {
+      transform: scale(1.05);
+    }
+    /* Lightbox */
+    .lightbox {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.9);
+    }
+    .lightbox-content {
+      margin: auto;
+      display: block;
+      max-width: 90%;
+      max-height: 80%;
+    }
+    .close {
+      position: absolute;
+      top: 20px;
+      right: 35px;
+      color: #fff;
+      font-size: 40px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    /* Sezione Tariffe */
+    #tariffe {
+      background: #f4f4f4;
+      text-align: center;
+      padding: 60px 0;
+    }
+    #tariffe h2 {
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+    .tariffe-table {
+      width: 80%;
+      max-width: 600px;
+      margin: 20px auto;
+      border-collapse: collapse;
+      background: #fff;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+    .tariffe-table th, .tariffe-table td {
+      padding: 15px;
+      border: 1px solid #ddd;
+    }
+    .tariffe-table th {
+      background: #ff9800;
+      color: #fff;
+      font-size: 1.1em;
+    }
+    .tariffe-table tr:nth-child(even) {
+      background: #f9f9f9;
+    }
+    /* Nuova Sezione Recensioni */
+    #recensioni {
+      background: #fff;
+      text-align: center;
+      padding: 60px 0;
+    }
+    #recensioni h2 {
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+    .recensioni-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+    .recensione {
+      background: #f4f4f4;
+      border-radius: 10px;
+      padding: 20px;
+      max-width: 350px;
+      flex: 1 1 300px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .recensione p {
+      margin-bottom: 10px;
+    }
+    .recensione .autore {
+      font-style: italic;
+      font-weight: bold;
+      color: #ff9800;
+      text-align: right;
+    }
+    /* Sezione Prenotazione */
+    #prenotazione {
+      text-align: center;
+    }
+    #prenotazione h2 {
+      font-size: 2em;
+      margin-bottom: 30px;
+    }
+    form {
+      max-width: 600px;
+      margin: 0 auto;
+      text-align: left;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+    }
+    form button {
+      background: #333;
+      color: #fff;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+      font-size: 1em;
+      transition: background 0.3s ease;
+    }
+    form button:hover {
+      background: #555;
+    }
+    /* Footer */
+    footer {
+      background: #333;
+      color: #fff;
+      text-align: center;
+      padding: 15px 0;
+    }
+    /* Spazio per il nav fisso */
+    .spacer {
+      height: 60px;
+    }
+    /* Smooth scroll */
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    /* Media Queries per dispositivi mobili */
+    @media (max-width: 768px) {
+      nav .container {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+      }
+      /* Mostra l'hamburger */
+      .hamburger {
+        display: flex;
+      }
+      /* Il menu mobile sarà posizionato in modo assoluto, sotto la nav, ancorato a destra */
+      ul.menu {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        right: 0;
+        top: 100%;
+        background: #f8f8f8;
+        padding: 10px 0;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        width: auto;
+      }
+      ul.menu.active {
+        display: flex;
+      }
+      ul.menu li {
+        margin: 10px 20px 10px 0;
+      }
+      /* Riduzione dell'altezza minima delle sezioni per dispositivi più piccoli */
+      #presentazione, #tariffe, #recensioni {
+        min-height: 400px;
+      }
+      #presentazione h1 {
+        font-size: 2em;
+      }
+      #presentazione p {
+        font-size: 1em;
+      }
+      .presentation-box {
+        width: 100%;
+        padding: 10px;
+      }
+      section {
+        padding: 40px 0;
+      }
+      .gallery-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigazione fissa con logo a sinistra -->
+  <nav>
+    <div class="container">
+      <div class="logo">
+        <a href="javascript:scroll(0,0)"><img src="images/LOGO.png" alt="Logo i Portici"></a>
+      </div>
+      <ul class="menu">
+        <li><a href="#presentazione">I Portici</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#tariffe">Tariffe</a></li>
+        <li><a href="#recensioni">Cosa dicono di noi</a></li>
+        <li><a href="#prenotazione">Prenota</a></li>
+      </ul>
+      <!-- Hamburger visibile solo in mobile, posizionato a destra -->
+      <div class="hamburger" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+  <div class="spacer"></div>
+  
+  <!-- Sezione Presentazione -->
+  <section id="presentazione">
+    <div class="container">
+      <div class="presentation-box">
+        <h1> </h1>
+        <h1>i Portici</h1>
+        <p>Benvenuti a i Portici, la vostra casa vacanze a Chiavari. Godetevi il comfort e la tranquillità di un soggiorno in una location unica, a due passi dal mare e dal centro storico.</p>
+        <a href="#prenotazione" class="btn">Prenota ora</a>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Sezione Gallery -->
+  <section id="gallery">
+    <div class="container">
+      <h2> </h2>
+      <h2>Gallery</h2>
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <img src="images/CHIAVARI-80-scaled.jpg" alt="Foto 1">
+        </div>
+        <div class="gallery-item">
+          <img src="images/images (1).jpg" alt="Foto 2">
+        </div>
+        <div class="gallery-item">
+          <img src="images/images.jpg" alt="Foto 3">
+        </div>
+        <div class="gallery-item">
+          <img src="images/download.jpg" alt="Foto 4">
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Lightbox Modal -->
+  <div id="lightbox" class="lightbox">
+    <span class="close">&times;</span>
+    <img class="lightbox-content" id="lightbox-img" alt="Immagine ingrandita">
+  </div>
+  
+  <!-- Sezione Tariffe -->
+  <section id="tariffe">
+    <div class="container">
+      <h2> </h2>
+      <h2> </h2>
+      <h2>Tariffe</h2>
+      <p>Scopri i nostri prezzi per soggiornare a i Portici.</p>
+      <table class="tariffe-table">
+        <tr>
+          <th>Stagione</th>
+          <th>Prezzo a Notte</th>
+          <th>Prezzo a Settimana</th>
+        </tr>
+        <tr>
+          <td>Alta Stagione</td>
+          <td>150€</td>
+          <td>600€</td>
+        </tr>
+        <tr>
+          <td>Bassa Stagione</td>
+          <td>100€</td>
+          <td>500€</td>
+        </tr>
+      </table>
+    </div>
+  </section>
+  
+  <!-- Nuova Sezione Recensioni -->
+  <section id="recensioni">
+    <div class="container">
+      <h2>Recensioni</h2>
+      <div class="recensioni-grid">
+        <div class="recensione">
+          <p>"Un soggiorno indimenticabile! L'appartamento è spazioso e ben arredato, perfetto per rilassarsi a Chiavari. Consigliatissimo!"</p>
+          <p class="autore">- Marco R.</p>
+        </div>
+        <div class="recensione">
+          <p>"La posizione è eccellente, a pochi passi dal mare e dal centro storico. Pulito, accogliente e con una vista mozzafiato."</p>
+          <p class="autore">- Elena G.</p>
+        </div>
+        <div class="recensione">
+          <p>"Ottima scelta per una vacanza in famiglia! L'appartamento offre tutti i comfort e un'atmosfera rilassante."</p>
+          <p class="autore">- Giovanni L.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Sezione Prenotazione / Richiesta Info -->
+  <section id="prenotazione">
+    <div class="container">
+      <h2>Richiedi Informazioni</h2>
+      <form onsubmit="submitFormWhatsApp(event)">
+        <div class="form-group">
+          <label for="nome">Nome</label>
+          <input type="text" id="nome" name="nome" placeholder="Il tuo nome" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="La tua email" required>
+        </div>
+        <div class="form-group">
+          <label for="telefono">Telefono</label>
+          <input type="tel" id="telefono" name="telefono" placeholder="Il tuo numero di telefono">
+        </div>
+        <div class="form-group">
+          <label for="arrivo">Data di Arrivo</label>
+          <input type="date" id="arrivo" name="arrivo" required>
+        </div>
+        <div class="form-group">
+          <label for="partenza">Data di Partenza</label>
+          <input type="date" id="partenza" name="partenza" required>
+        </div>
+        <div class="form-group">
+          <label for="messaggio">Messaggio</label>
+          <textarea id="messaggio" name="messaggio" rows="5" placeholder="Scrivi il tuo messaggio..."></textarea>
+        </div>
+        <button type="submit">Invia Richiesta su Whatapp</button>
+      </form>
+    </div>
+  </section>
+  
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 i Portici - Casa Vacanze a Chiavari. Tutti i diritti riservati.</p>
+    </div>
+  </footer>
+  
+  <!-- Script per il Lightbox e il menu hamburger -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function(){
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = document.getElementById('lightbox-img');
+      const galleryImages = document.querySelectorAll('.gallery-item img');
+      
+      galleryImages.forEach(img => {
+        img.addEventListener('click', function(){
+          lightbox.style.display = 'block';
+          lightboxImg.src = this.src;
+        });
+      });
+      
+      document.querySelector('.close').addEventListener('click', function(){
+        lightbox.style.display = 'none';
+      });
+      
+      // Chiude il lightbox se si clicca fuori dall'immagine
+      lightbox.addEventListener('click', function(e) {
+        if(e.target === lightbox) {
+          lightbox.style.display = 'none';
+        }
+      });
+    });
+    
+    // Funzione per il menu hamburger
+    function toggleMenu() {
+      const menu = document.querySelector('ul.menu');
+      menu.classList.toggle('active');
+    }
+  </script>
+  <script>
+    function submitFormWhatsApp(event) {
+      event.preventDefault();
+      
+      // Verifica se l'utente sta usando un dispositivo mobile
+      if (!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+        alert("La compilazione del form e l'invio via WhatsApp sono disponibili solo su dispositivi mobili. Contatta il numero xxxxxxx");
+        return;
+      }
+
+      // Recupera i valori dal form
+      var nome = document.getElementById('nome').value;
+      var email = document.getElementById('email').value;
+      var telefono = document.getElementById('telefono').value;
+      var arrivo = document.getElementById('arrivo').value;
+      var partenza = document.getElementById('partenza').value;
+      var messaggio = document.getElementById('messaggio').value;
+      
+      // Costruisci il messaggio (ricorda di codificare l'URL)
+      var testo = encodeURIComponent(
+        "Ciao, sono " + nome + " (email: " + email + ", telefono: " + telefono + "). " +
+        "Vorrei prenotare dal " + arrivo + " al " + partenza + ". " +
+        "Messaggio: " + messaggio
+      );
+      
+      // Costruisci l'URL per WhatsApp (sostituisci il numero con il tuo)
+      var waURL = "https://wa.me/393888490525?text=" + testo;
+      
+      // Reindirizza l'utente a WhatsApp
+      window.location.href = waURL;
+    }
+    </script>
+</body>
+</html>
