@@ -574,10 +574,10 @@
       event.preventDefault();
       
       // Verifica se l'utente sta usando un dispositivo mobile
-      //if (!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-       // alert("La compilazione del form e l'invio via WhatsApp sono disponibili solo su dispositivi mobili. Contatta il numero 328 7242500");
-       // return;
-      //}
+      if (!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+        alert("La compilazione del form e l'invio via WhatsApp sono disponibili solo su dispositivi mobili. Contatta il numero xxxxxxx");
+        return;
+      }
 
       // Recupera i valori dal form
       var nome = document.getElementById('nome').value;
@@ -591,12 +591,12 @@
       var testo = encodeURIComponent(
         "Ciao, sono " + nome + " (email: " + email + ", telefono: " + telefono + "). " +
         //"Vorrei richiedere appuntamento il giorno " + arrivo + ". " +
-        "Vorrei richiedere un appuntamento per un colloquio psicologico." +
+        "Vorrei richiedere appuntamento il giorno " + arrivo + ". " +
         "Messaggio: " + messaggio
       );
       
       // Costruisci l'URL per WhatsApp (sostituisci il numero con il tuo)
-      var waURL = "https://wa.me/393287242500?text=" + testo;
+      var waURL = "https://wa.me/393888490525?text=" + testo;
       
       // Reindirizza l'utente a WhatsApp
       window.location.href = waURL;
