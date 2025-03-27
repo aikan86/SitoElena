@@ -509,10 +509,12 @@
           <label for="telefono">Telefono</label>
           <input type="tel" id="telefono" name="telefono" placeholder="Il tuo numero di telefono">
         </div>
+        <!--
         <div class="form-group">
           <label for="arrivo">Giorno di richiesta</label>
           <input type="date" id="arrivo" name="arrivo" required>
         </div>
+        -->
         <!--
         <div class="form-group">
           <label for="partenza">Data di Partenza</label>
@@ -573,7 +575,7 @@
       
       // Verifica se l'utente sta usando un dispositivo mobile
       if (!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-        alert("La compilazione del form e l'invio via WhatsApp sono disponibili solo su dispositivi mobili. Contatta il numero xxxxxxx");
+        alert("La compilazione del form e l'invio via WhatsApp sono disponibili solo su dispositivi mobili. Contatta il numero 328 7242500");
         return;
       }
 
@@ -588,12 +590,13 @@
       // Costruisci il messaggio (ricorda di codificare l'URL)
       var testo = encodeURIComponent(
         "Ciao, sono " + nome + " (email: " + email + ", telefono: " + telefono + "). " +
-        "Vorrei richiedere appuntamento il giorno " + arrivo + ". " +
+        //"Vorrei richiedere appuntamento il giorno " + arrivo + ". " +
+        "Vorrei richiedere un appuntamento per un colloquio psicologico." +
         "Messaggio: " + messaggio
       );
       
       // Costruisci l'URL per WhatsApp (sostituisci il numero con il tuo)
-      var waURL = "https://wa.me/393888490525?text=" + testo;
+      var waURL = "https://wa.me/393287242500?text=" + testo;
       
       // Reindirizza l'utente a WhatsApp
       window.location.href = waURL;
