@@ -573,7 +573,7 @@
       
       // Verifica se l'utente sta usando un dispositivo mobile
       if (!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-        alert("La compilazione del form e l'invio via WhatsApp sono disponibili solo su dispositivi mobili. Contatta il numero xxxxxxx");
+        alert("La compilazione del form e l'invio via WhatsApp sono disponibili solo su dispositivi mobili. Contatta il numero 3287242500");
         return;
       }
 
@@ -588,7 +588,8 @@
       // Costruisci il messaggio (ricorda di codificare l'URL)
       var testo = encodeURIComponent(
         "Ciao, sono " + nome + " (email: " + email + ", telefono: " + telefono + "). " +
-        "Vorrei richiedere appuntamento il giorno " + arrivo + ". " +
+        //"Vorrei richiedere appuntamento il giorno " + arrivo + ". " +
+        "Vorrei richiedere un appuntamento per un colloquio psciologico." +
         "Messaggio: " + messaggio
       );
       
