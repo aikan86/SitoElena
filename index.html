@@ -509,12 +509,10 @@
           <label for="telefono">Telefono</label>
           <input type="tel" id="telefono" name="telefono" placeholder="Il tuo numero di telefono">
         </div>
-        <!--
         <div class="form-group">
           <label for="arrivo">Giorno di richiesta</label>
           <input type="date" id="arrivo" name="arrivo" required>
         </div>
-        -->
         <!--
         <div class="form-group">
           <label for="partenza">Data di Partenza</label>
@@ -590,7 +588,6 @@
       // Costruisci il messaggio (ricorda di codificare l'URL)
       var testo = encodeURIComponent(
         "Ciao, sono " + nome + " (email: " + email + ", telefono: " + telefono + "). " +
-        //"Vorrei richiedere appuntamento il giorno " + arrivo + ". " +
         "Vorrei richiedere appuntamento il giorno " + arrivo + ". " +
         "Messaggio: " + messaggio
       );
